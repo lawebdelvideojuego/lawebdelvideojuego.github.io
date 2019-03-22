@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} - La Web del Videojuego</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+
+    <nav class="navbar has-shadow is-spaced is-light" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/" {% if page.url == "/" %}class="current"{% endif %}>
+            <img src="/assets/images/logo1.png" alt="La Web del Videojuego: Analisis y artículos de opinión relacionados con los videojocs">
+            <div class="logo-title has-text-weight-bold is-family-sans-serif is-size-4">laWebDelVideojuego</div>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/analisis/">Análisis</a>
+          <a class="navbar-item" href="/articulos/">Artículos</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="body-main container is-spaced content">
+      {{ content }}
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>La Web del Videojuego</strong>, por <a href="https://jbilbo.com">Jonathan Hernández</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
