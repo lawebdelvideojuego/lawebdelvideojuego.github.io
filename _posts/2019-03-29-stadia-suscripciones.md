@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Google Stadia, Apple Arcade y las suscripciones"
-date:   2019-01-29 20:16:23 +0100
+date:   2019-03-29 20:16:23 +0100
 author: Jonathan H.
 categories: articulos
 ---
