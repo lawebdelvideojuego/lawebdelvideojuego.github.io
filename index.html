@@ -5,16 +5,8 @@ title: La Web del Videojuego
 
 {% for post in site.posts %}
     <h1><a href="{{post.url}}">{{ post.title }}</a></h1>
-    <article class="media">
-      <div class="media-content">
-        <div class="content">
-          {{ post.excerpt }}        
-        </div>
-      </div>
-      <figure class="media-right">
-        <p class="image is-64x64">
-          <img src="https://bulma.io/images/placeholders/128x128.png">
-        </p>
-      </figure>
-    </article>
+    <p>Por {{ post.author }} - {{ post.date | date_to_string }}</p>
+    <div class="content">
+      {{ post.content }}
+    </div>
 {% endfor %}
