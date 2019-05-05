@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "Google Stadia, Apple Arcade y las suscripciones"
-date:   2019-03-29 20:16:23 +0100
 author: Jonathan H.
 categories: articulos
 summary: No se sabe nada oficial del modelo de negocio que habrá detrás de Stadia, pero leyendo sobre el tema, en artículos y redes sociales, las apuestas están del lado del modelo de suscripción a lo Netflix, Game Pass o PS Now. A mi no me cuadra.
 image: /assets/images/stadia/google-stadia1.png
 ---
+
 Todavía no se sabe nada oficial del modelo de negocio que habrá detrás de [Stadia](https://store.google.com/magazine/stadia), la plataforma de streaming con la que Google quiere romper el mercado y hacerse un hueco en el mundo de los videojuegos. Pero leyendo sobre el tema, en artículos y redes sociales, parece que las apuestas están del lado del modelo de suscripción a lo Netflix, Game Pass o PS Now.
 
 A mi no me cuadra. Viendo el tipo de juego y jugador al que se dirigen, y con intención de tener triples A como los Assassin's Creed o Doom Eternal, tiene más sentido que exista la posibilidad de pagar los 70€ que suelen costar estos juegos de salida.
