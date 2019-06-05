@@ -11,6 +11,7 @@ url: "https://lawebdelvideojuego.com"
 title_image: /assets/images/logo1.png
 twitter_username: jbilbob
 github_username: jbilbo
+excerpt_separator: <!--more-->
 
 # Build settings
 markdown: kramdown

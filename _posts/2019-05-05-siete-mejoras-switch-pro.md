@@ -10,6 +10,7 @@ image: /assets/images/switch-transp.png
 El [Wall Street Journal](https://www.wsj.com/articles/nintendo-to-launch-two-new-switch-models-11553494773), y [Eurogamer UK](https://www.eurogamer.net/articles/2019-03-26-two-new-nintendo-switch-similar-to-2ds-new-3ds-xl-sources-say) después, publicaron recientemente un artículo confirmando que **Nintendo planeaba sacar a luz dos nuevos modelos de Nintendo Switch este año**. Ambos medios cuentan con fuentes internas bastante fiables en Nintendo, así que aunque no haya confirmación oficial por parte de la compañía de Kyoto, es bastante probable que así sea.
 
 Según estos medios, los nuevos modelos serían: 
+<!--more-->
 - **Uno más barato (la llaman Lite o Mini), focalizado a la portabilidad**. Se dice que no incluirá el dock, será pequeña y eliminaría características como el HD Rumble. Su público objetivo sería el de 3DS y jugadores Pokémon, de edad más joven. Por lo que seguramente tendrá pack con Pokémon Escudo y Espada, y sería un caramelito para los niños, y un coste más asumible para los padres, de cara a la campaña navideña. Según fuentes de [Bloomberg](https://www.nintendoenthusiast.com/2019/04/23/bloomberg-new-cheaper-nintendo-switch-june/), este modelo saldría a finales de Junio.
 
 - **Uno más Premium o Pro**, para los usuarios más "dedicados". Podría incluir mejores componentes. Una mayor potencia? Si es así, no sería mucho mayor. No se sabe mucho más de esta revisión.
