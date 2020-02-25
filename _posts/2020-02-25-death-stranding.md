@@ -4,7 +4,7 @@ title:  "Análisis de Death Stranding"
 author: Jonathan H.
 categories: analisis
 summary:
-image: /assets/images/ini-closeup.jpeg
+image: /assets/images/death-stranding/ini-closeup.jpeg
 score: 8
 ---
 
