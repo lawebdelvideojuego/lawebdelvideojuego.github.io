@@ -1,0 +1,24 @@
+---
+layout: base.njk
+---
+<article>
+  <header class="post-header">
+    <h1 class="post-title">{{ title }}</h1>
+    <p class="post-meta">
+      Por {{ author }} &middot; <time datetime="{{ date | isoDate }}">{{ date | formatDate }}</time>
+      {% if categories == "analisis" %}
+      &middot; <span class="type-badge type-badge--analisis">Analisis</span>
+      {% endif %}
+    </p>
+  </header>
+
+  <div class="post-content">
+    {{ content | safe }}
+  </div>
+
+  {% if score %}
+  <div class="post-score">
+    Puntuacion: {{ score }}/10
+  </div>
+  {% endif %}
+</article>

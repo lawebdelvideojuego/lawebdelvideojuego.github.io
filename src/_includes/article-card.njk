@@ -1,0 +1,21 @@
+<article class="feed-item article-card{% if item.data.score %} article-card--with-score{% endif %}">
+  <div class="card-content">
+    <div class="card-meta">
+      <time datetime="{{ item.date | isoDate }}">{{ item.date | shortDate }}</time>
+      {% if item.data.categories == "analisis" %}
+      <span class="type-badge type-badge--analisis">Analisis</span>
+      {% endif %}
+    </div>
+    <h2 class="card-title">
+      <a href="{{ item.url }}">{{ item.data.title }}</a>
+    </h2>
+    <p class="card-excerpt">{{ item.templateContent | excerpt | safe }}</p>
+    <a href="{{ item.url }}" class="card-link">Leer mas &rarr;</a>
+  </div>
+  {% if item.data.score %}
+  <div class="card-score {% if item.data.score <= 4 %}card-score--low{% elseif item.data.score <= 7 %}card-score--mid{% elseif item.data.score == 10 %}card-score--perfect{% else %}card-score--high{% endif %}">
+    {% if item.data.score == 10 %}<span class="card-score__crown"></span>{% endif %}
+    <span class="card-score__value">{{ item.data.score }}</span>
+  </div>
+  {% endif %}
+</article>

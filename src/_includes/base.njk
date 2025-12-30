@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} - {{ site.title }}</title>
+  <meta name="description" content="{{ summary or site.description }}">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ summary or site.description }}">
+  <meta property="og:type" content="{% if layout == 'post.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {% if image %}
+  <meta property="og:image" content="{{ site.url }}{{ image | replace('/assets/images/', '/images/') }}">
+  {% endif %}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="{% if image %}summary_large_image{% else %}summary{% endif %}">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ summary or site.description }}">
+  {% if image %}
+  <meta name="twitter:image" content="{{ site.url }}{{ image | replace('/assets/images/', '/images/') }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">
+        <a href="/">{{ site.title }}</a>
+      </h1>
+      <nav class="site-nav">
+        <a href="/articulos/"{% if page.url == '/articulos/' %} aria-current="page"{% endif %}>Articulos</a>
+        <a href="/analisis/"{% if page.url == '/analisis/' %} aria-current="page"{% endif %}>Analisis</a>
+        <a href="/sobre/"{% if page.url == '/sobre/' %} aria-current="page"{% endif %}>Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; {{ site.author }}</p>
+        <a href="/original/" class="easter-egg" title="Una web de otro tiempo...">
+          <img src="/original/inicio/titulo.gif" alt="" width="88" height="37">
+        </a>
+        <p>
+          <a href="https://jbilbo.com" target="_blank" rel="noopener">jbilbo.com</a>
+          &middot;
+          <a href="https://bsky.app/profile/{{ site.bluesky }}" target="_blank" rel="noopener">Bluesky</a>
+          &middot;
+          <a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

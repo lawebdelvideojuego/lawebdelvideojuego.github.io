@@ -1,0 +1,12 @@
+{
+  "name": "lawebdelvideojuego",
+  "version": "2.0.0",
+  "description": "Blog de videojuegos - Artículos y análisis",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

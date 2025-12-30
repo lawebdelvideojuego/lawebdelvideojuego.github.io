@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Articulos
+permalink: /articulos/
+---
+
+<h1>Articulos</h1>
+
+<div class="feed">
+  {% for item in collections.articulos %}
+    {% include "article-card.njk" %}
+  {% endfor %}
+
+  {% if collections.articulos.length == 0 %}
+    <p>No hay articulos todavia.</p>
+  {% endif %}
+</div>

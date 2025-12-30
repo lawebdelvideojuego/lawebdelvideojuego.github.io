@@ -1,3 +1,22 @@
+# Build output
 _site
+
+# Dependencies
+node_modules
+
+# Old Jekyll files (can be removed after migration)
 .sass-cache
 .jekyll-metadata
+
+# OS files
+.DS_Store
+
+# Editor
+*.swp
+*.swo
+.vscode
+.idea
+
+# Claude
+CLAUDE.md
+.playwright-mcp
