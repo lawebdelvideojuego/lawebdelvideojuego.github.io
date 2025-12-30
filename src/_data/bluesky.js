@@ -1,6 +1,7 @@
 /**
  * Bluesky Data Fetcher
  * Fetches posts from a Bluesky account and filters by gaming-related keywords.
+ * Posts are cached to preserve history across builds.
  *
  * Configuration:
  * - BLUESKY_HANDLE: The Bluesky handle to fetch posts from
@@ -9,7 +10,11 @@
  * - INCLUDE_ALL: Set to true to include all posts (ignores keyword filter)
  */
 
+const fs = require('fs');
+const path = require('path');
+
 const BLUESKY_HANDLE = "jbilbo.bsky.social";
+const CACHE_FILE = path.join(__dirname, 'bluesky-cache.json');
 
 // Keywords to identify gaming-related posts (case-insensitive)
 // Edit this list to customize which posts appear on your blog
@@ -189,9 +194,72 @@ async function fetchBlueskyPosts() {
   return posts.sort((a, b) => b.date - a.date);
 }
 
+/**
+ * Load cached posts from file
+ */
+function loadCache() {
+  try {
+    if (fs.existsSync(CACHE_FILE)) {
+      const data = fs.readFileSync(CACHE_FILE, 'utf8');
+      const cached = JSON.parse(data);
+      // Convert date strings back to Date objects
+      return cached.map(post => ({
+        ...post,
+        date: new Date(post.date)
+      }));
+    }
+  } catch (error) {
+    console.warn(`Bluesky: Error loading cache: ${error.message}`);
+  }
+  return [];
+}
+
+/**
+ * Save posts to cache file
+ */
+function saveCache(posts) {
+  try {
+    fs.writeFileSync(CACHE_FILE, JSON.stringify(posts, null, 2));
+    console.log(`Bluesky: Saved ${posts.length} posts to cache`);
+  } catch (error) {
+    console.warn(`Bluesky: Error saving cache: ${error.message}`);
+  }
+}
+
+/**
+ * Merge new posts with cached posts, removing duplicates by URI
+ */
+function mergePosts(newPosts, cachedPosts) {
+  const postMap = new Map();
+
+  // Add cached posts first
+  for (const post of cachedPosts) {
+    postMap.set(post.uri, post);
+  }
+
+  // Add/update with new posts (newer data takes precedence)
+  for (const post of newPosts) {
+    postMap.set(post.uri, post);
+  }
+
+  // Convert back to array and sort by date descending
+  return Array.from(postMap.values()).sort((a, b) => b.date - a.date);
+}
+
 module.exports = async function() {
   // During development, you can return an empty array to skip API calls
   // return [];
 
-  return await fetchBlueskyPosts();
+  const cachedPosts = loadCache();
+  const newPosts = await fetchBlueskyPosts();
+
+  const mergedPosts = mergePosts(newPosts, cachedPosts);
+
+  // Save updated cache
+  if (mergedPosts.length > cachedPosts.length) {
+    console.log(`Bluesky: ${mergedPosts.length - cachedPosts.length} new posts added`);
+  }
+  saveCache(mergedPosts);
+
+  return mergedPosts;
 };
