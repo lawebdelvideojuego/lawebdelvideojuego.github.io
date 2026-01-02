@@ -4,37 +4,22 @@ title: La Web del Videojuego
 ---
 
 <div class="feed">
-  {# Merge blog posts and Bluesky posts #}
-  {% set allItems = [] %}
-
-  {# Add blog posts #}
+  {# Blog posts #}
   {% for post in collections.posts %}
-    {% set item = {
-      type: "article",
-      date: post.date,
-      post: post
-    } %}
-    {% set allItems = (allItems.push(item), allItems) %}
-  {% endfor %}
-
-  {# Add Bluesky posts #}
-  {% for bsky in bluesky %}
-    {% set item = {
-      type: "bluesky",
-      date: bsky.date,
-      bsky: bsky
-    } %}
-    {% set allItems = (allItems.push(item), allItems) %}
-  {% endfor %}
-
-  {# Sort by date (newest first) and display #}
-  {% for entry in allItems | sortByDate %}
-    {% if entry.type == "article" %}
-      {% set item = entry.post %}
-      {% include "article-card.njk" %}
-    {% elif entry.type == "bluesky" %}
-      {% set item = entry.bsky %}
-      {% include "bluesky-card.njk" %}
-    {% endif %}
+    {% set item = post %}
+    {% include "article-card.njk" %}
   {% endfor %}
 </div>
+
+{# Bluesky posts section #}
+{% if bluesky.length %}
+<section class="bluesky-section">
+  <h2>En Bluesky</h2>
+  <div class="feed">
+    {% for bsky in bluesky %}
+      {% set item = bsky %}
+      {% include "bluesky-card.njk" %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

@@ -12,10 +12,15 @@ module.exports = function(eleventyConfig) {
     return d.toLocaleDateString('es-ES', options);
   });
 
-  // Short date for feed items
+  // Short date for feed items (includes year if not current year)
   eleventyConfig.addFilter("shortDate", (date) => {
     const d = new Date(date);
+    const currentYear = new Date().getFullYear();
+    const postYear = d.getFullYear();
     const options = { month: 'short', day: 'numeric' };
+    if (postYear !== currentYear) {
+      options.year = 'numeric';
+    }
     return d.toLocaleDateString('es-ES', options);
   });
 
