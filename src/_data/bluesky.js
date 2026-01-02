@@ -21,21 +21,27 @@ const CACHE_FILE = path.join(__dirname, 'bluesky-cache.json');
 const GAMING_KEYWORDS = [
   // Platforms
   "nintendo", "switch", "playstation", "ps5", "ps4", "xbox", "steam", "pc gaming",
-  "game pass", "stadia", "dreamcast", "3ds", "vita",
+  "game pass", "stadia", "dreamcast", "3ds", " vita ",
   // General gaming terms (Spanish)
   "videojuego", "videojuegos", "juego", "juegos", "gaming", "gamer",
   "consola", "consolas", "partida", "jugando", "platino",
   // General gaming terms (English)
   "game", "games", "playing", "gameplay", "playthrough",
-  // Game-related
+  // Studios
+  "bethesda", "obsidian", "ubisoft", "capcom", "sega", "konami", "bandai namco",
+  "square enix", "fromsoftware", "platinum games", "team asobi",
+  // Game franchises & titles
   "zelda", "mario", "pokemon", "smash", "metroid", "kirby",
   "final fantasy", "ffvii", "ffxvi", "resident evil", "metal gear", "kojima",
-  "souls", "elden ring", "fromsoftware", "dark souls", "bloodborne",
+  "souls", "elden ring", "eldenring", "dark souls", "bloodborne", "sekiro",
   "god of war", "horizon", "spider-man", "uncharted", "last of us",
-  "halo", "forza", "gears", "starfield",
+  "halo", " forza ", "gears", "starfield",
+  "cyberpunk", "death stranding", "deathstranding",
+  "persona", "sonic", "watch dogs", "watchdogs", "apex legends",
+  "dragon quest", "toriyama", "astro bot",
   "indie", "roguelike", "metroidvania", "rpg", "jrpg",
   // Events
-  "e3", "direct", "state of play", "game awards", "tga",
+  "e3", "nintendo direct", "state of play", "game awards", "tga",
   // Actions
   "analisis", "review", "trailer", "dlc", "update", "parche"
 ];
@@ -255,11 +261,11 @@ module.exports = async function() {
 
   const mergedPosts = mergePosts(newPosts, cachedPosts);
 
-  // Save updated cache
+  // Only save cache if there are actual new posts (avoid infinite reload loop)
   if (mergedPosts.length > cachedPosts.length) {
     console.log(`Bluesky: ${mergedPosts.length - cachedPosts.length} new posts added`);
+    saveCache(mergedPosts);
   }
-  saveCache(mergedPosts);
 
   return mergedPosts;
 };
