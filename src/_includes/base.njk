@@ -61,5 +61,86 @@
       </div>
     </div>
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" aria-label="Cerrar"></button>
+    <button class="lightbox__nav lightbox__nav--prev" aria-label="Anterior"></button>
+    <img class="lightbox__img" src="" alt="">
+    <button class="lightbox__nav lightbox__nav--next" aria-label="Siguiente"></button>
+  </div>
+
+  <script>
+    (function() {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox) return;
+
+      const img = lightbox.querySelector('.lightbox__img');
+      const btnClose = lightbox.querySelector('.lightbox__close');
+      const btnPrev = lightbox.querySelector('.lightbox__nav--prev');
+      const btnNext = lightbox.querySelector('.lightbox__nav--next');
+
+      let currentImages = [];
+      let currentIndex = 0;
+
+      function open(images, index) {
+        currentImages = images;
+        currentIndex = index;
+        updateImage();
+        lightbox.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lightbox.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+
+      function updateImage() {
+        img.src = currentImages[currentIndex];
+        btnPrev.disabled = currentIndex === 0;
+        btnNext.disabled = currentIndex === currentImages.length - 1;
+      }
+
+      function prev() {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateImage();
+        }
+      }
+
+      function next() {
+        if (currentIndex < currentImages.length - 1) {
+          currentIndex++;
+          updateImage();
+        }
+      }
+
+      // Event listeners
+      document.querySelectorAll('.game-card__gallery img').forEach(function(galleryImg) {
+        galleryImg.addEventListener('click', function() {
+          const gallery = this.closest('.game-card__gallery');
+          const images = Array.from(gallery.querySelectorAll('img')).map(function(i) { return i.src; });
+          const index = images.indexOf(this.src);
+          open(images, index);
+        });
+      });
+
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', prev);
+      btnNext.addEventListener('click', next);
+
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) close();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('is-active')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      });
+    })();
+  </script>
 </body>
 </html>

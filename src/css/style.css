@@ -601,6 +601,261 @@ main {
 }
 
 /* --------------------------------------------------------------------------
+   Games Year Post (Annual Review)
+   -------------------------------------------------------------------------- */
+.games-year-intro {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%);
+  border-left: 4px solid var(--color-accent);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.games-year-intro p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.games-year-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+  margin-bottom: var(--spacing-xxl);
+}
+
+/* Game Card */
+.game-card {
+  background: var(--color-surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .game-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.game-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  .game-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.game-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+}
+
+.game-card .game-card__title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  flex: 1;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.game-card__platform {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+/* Game Score Badge */
+.game-card__score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.game-card__score::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 50%);
+  border-radius: 12px;
+}
+
+.game-card__score-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+/* Score Colors - Metacritic Style */
+.game-card__score--low {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.game-card__score--mid {
+  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+
+.game-card__score--mid .game-card__score-value {
+  color: #1a1a1a;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.game-card__score--high {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.game-card__score--perfect {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5), 0 0 20px rgba(40, 167, 69, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5), 0 0 20px rgba(40, 167, 69, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(40, 167, 69, 0.7), 0 0 30px rgba(40, 167, 69, 0.5);
+  }
+}
+
+/* Game Gallery */
+.game-card__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--color-border);
+}
+
+.game-card__gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease, object-position 0.4s ease;
+}
+
+.game-card__gallery img:hover {
+  transform: scale(1.1);
+  object-position: top;
+}
+
+/* Single image - full width */
+.game-card__gallery img:only-child {
+  grid-column: 1 / -1;
+  height: 300px;
+}
+
+/* 3 images layout */
+.game-card__gallery img:first-child:nth-last-child(3) {
+  grid-column: 1 / -1;
+  height: 220px;
+}
+
+/* 4 images - 2x2 grid */
+.game-card__gallery img:first-child:nth-last-child(4),
+.game-card__gallery img:first-child:nth-last-child(4) ~ img {
+  height: 160px;
+}
+
+/* Game Content */
+.game-card__content {
+  padding: var(--spacing-lg);
+}
+
+.game-card__content p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+/* Bluesky Link */
+.game-card__bsky-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-bluesky);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.game-card__bsky-link:hover {
+  background: var(--color-surface);
+  color: var(--color-bluesky);
+}
+
+.game-card__bsky-link::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 530'%3E%3Cpath fill='%230085ff' d='m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Games Year Summary */
+.games-year-summary {
+  background: var(--color-surface);
+  padding: var(--spacing-xl);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  margin-top: var(--spacing-xl);
+}
+
+.games-year-summary h2 {
+  margin: 0 0 var(--spacing-md);
+  font-size: 1.4rem;
+  color: var(--color-accent);
+}
+
+.games-year-summary p {
+  margin: 0 0 var(--spacing-md);
+  line-height: 1.8;
+}
+
+.games-year-summary p:last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
@@ -616,4 +871,190 @@ main {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  /* Games Year Post - Mobile */
+  .game-card__header {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .game-card__title {
+    font-size: 1.15rem;
+    order: 1;
+    flex-basis: calc(100% - 70px);
+  }
+
+  .game-card__platform {
+    order: 3;
+  }
+
+  .game-card__score {
+    order: 2;
+    width: 48px;
+    height: 48px;
+  }
+
+  .game-card__score-value {
+    font-size: 1.3rem;
+  }
+
+  .game-card__gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .game-card__gallery img {
+    height: 140px;
+  }
+
+  .game-card__gallery img:only-child {
+    height: 200px;
+  }
+
+  .game-card__gallery img:first-child:nth-last-child(4),
+  .game-card__gallery img:first-child:nth-last-child(4) ~ img {
+    height: 120px;
+  }
+
+  .games-year-intro {
+    padding: var(--spacing-md);
+  }
+
+  .games-year-intro p {
+    font-size: 1rem;
+  }
+
+  .games-year-summary {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Lightbox
+   -------------------------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: zoom-out;
+}
+
+.lightbox.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.is-active .lightbox__img {
+  transform: scale(1);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox__close::before,
+.lightbox__close::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: white;
+}
+
+.lightbox__close::before {
+  transform: rotate(45deg);
+}
+
+.lightbox__close::after {
+  transform: rotate(-45deg);
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox__nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.lightbox__nav--prev {
+  left: var(--spacing-lg);
+}
+
+.lightbox__nav--next {
+  right: var(--spacing-lg);
+}
+
+.lightbox__nav::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+}
+
+.lightbox__nav--prev::before {
+  transform: rotate(-135deg);
+  margin-left: 4px;
+}
+
+.lightbox__nav--next::before {
+  transform: rotate(45deg);
+  margin-right: 4px;
+}
+
+/* Make gallery images clickable */
+.game-card__gallery img {
+  cursor: zoom-in;
 }
