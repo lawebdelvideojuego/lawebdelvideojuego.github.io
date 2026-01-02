@@ -793,7 +793,8 @@ main {
   background: var(--color-border);
 }
 
-.game-card__gallery img {
+.game-card__gallery img,
+.game-card__gallery video {
   width: 100%;
   height: 180px;
   object-fit: cover;
@@ -806,8 +807,9 @@ main {
   object-position: top;
 }
 
-/* Single image - full width */
-.game-card__gallery img:only-child {
+/* Single image/video - full width */
+.game-card__gallery img:only-child,
+.game-card__gallery video:only-child {
   grid-column: 1 / -1;
   height: 300px;
 }
@@ -889,6 +891,28 @@ main {
   margin-bottom: 0;
 }
 
+.games-year-summary h3 {
+  margin: var(--spacing-lg) 0 var(--spacing-sm);
+  font-size: 1.15rem;
+  color: var(--color-text);
+}
+
+.games-year-summary ul {
+  margin: 0 0 var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+
+.games-year-summary li {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+}
+
+.goty-highlight {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
@@ -936,11 +960,13 @@ main {
     grid-template-columns: 1fr 1fr;
   }
 
-  .game-card__gallery img {
+  .game-card__gallery img,
+  .game-card__gallery video {
     height: 140px;
   }
 
-  .game-card__gallery img:only-child {
+  .game-card__gallery img:only-child,
+  .game-card__gallery video:only-child {
     height: 200px;
   }
 
