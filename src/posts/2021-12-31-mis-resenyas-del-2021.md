@@ -4,6 +4,7 @@ author: Jonathan H.
 categories: articulos
 summary: "Un año especial con videojuegos, series, películas y libros. It Takes Two, Beat Saber, Scott Pilgrim, Loki, After Life y mucho más."
 image: /assets/images/resenyas-2021/it-takes-two.jpeg
+featured: true
 date: 2021-12-31
 ---
 
