@@ -7,7 +7,7 @@ layout: base.njk
     <p class="post-meta">
       Por {{ author }} &middot; <time datetime="{{ date | isoDate }}">{{ date | formatDate }}</time>
       {% if categories == "analisis" %}
-      &middot; <span class="type-badge type-badge--analisis">Analisis</span>
+      &middot; <span class="type-badge type-badge--analisis">Análisis</span>
       {% endif %}
     </p>
   </header>
@@ -18,7 +18,7 @@ layout: base.njk
 
   {% if score %}
   <div class="post-score">
-    Puntuacion: {{ score }}/10
+    Puntuación: {{ score }}/10
   </div>
   {% endif %}
 </article>

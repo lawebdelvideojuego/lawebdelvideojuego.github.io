@@ -1,10 +1,10 @@
 ---
 layout: base.njk
-title: Articulos
+title: Artículos
 permalink: /articulos/
 ---
 
-<h1>Articulos</h1>
+<h1>Artículos</h1>
 
 <div class="feed">
   {% for item in collections.articulos %}
@@ -12,6 +12,6 @@ permalink: /articulos/
   {% endfor %}
 
   {% if collections.articulos.length == 0 %}
-    <p>No hay articulos todavia.</p>
+    <p>No hay artículos todavía.</p>
   {% endif %}
 </div>
